@@ -10,10 +10,18 @@ if(isset($_POST['btn-editar'])):
     $imc = $peso/($altura * $altura);
     //$genero = mysqli_escape_string($connect, $_POST['generos']);
     $id_genero = mysqli_escape_string($connect, $_POST['generos']);
+    if($id_genero == 1):
+        $genero = 'Feminino';
+    elseif($id_genero == 2):
+        $genero = 'Masculino';
+    elseif($id_genero == 3):
+        $genero = 'Outros';
+    endif;
+
     $id = mysqli_escape_string($connect, $_POST['id']);
 
     $sql = "UPDATE pessoa SET nome = '$nome', idade = '$idade', altura = '$altura',
-                peso = '$peso', imc = '$imc', id_genero = '$id_genero' WHERE id = '$id'";
+                peso = '$peso', imc = '$imc', genero = '$genero', id_genero = '$id_genero' WHERE id = '$id'";
 
     if(mysqli_query($connect, $sql)):
         $_SESSION['mensagem'] = "Atualizado com sucesso";
