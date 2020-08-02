@@ -1,10 +1,10 @@
 <?php
 // conexão
-include_once "php_action/db_connect.php";
+include_once "models/banco.php";
 
-include_once 'includes/header.php';
+include_once 'views/header.php';
 
-include_once 'includes/mensagem.php';
+include_once 'views/mensagem.php';
 ?>
 
 <div class="row">
@@ -51,7 +51,7 @@ include_once 'includes/mensagem.php';
 
                 <td><?php echo $dados['id_genero']?></td>
 
-                <td><a href="editar.php?id=<?php echo $dados['id'];?>" class="btn-floating green"><i class="material-icons">edit</i></a></td>
+                <td><a href="controller/editar.php?id=<?php echo $dados['id'];?>" class="btn-floating green"><i class="material-icons">edit</i></a></td>
                 <td><a href="#modal<?php echo $dados['id']; ?>" class="btn-floating red modal-trigger"><i class="material-icons">delete</i></a></td>
 
                 <!-- Modal Structure -->
@@ -62,7 +62,7 @@ include_once 'includes/mensagem.php';
                     </div>
                     <div class="modal-footer">
 
-                        <form action="php_action/delete.php" method="post">
+                        <form action="models/delete.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $dados['id']; ?>">
                             <button type="submit" name="btn-deletar" class="btn red">
                                 Sim, deletar
@@ -83,13 +83,13 @@ include_once 'includes/mensagem.php';
             </tr>
         ?>
         <?php endif; ?>
-        <img src="includes/imc.png">
+        <img src="views/imc.png">
         </tbody>
     </table>
-    <a href="adicionar.php" class="btn">Adicionar</a>
+    <a href="views/adicionar.php" class="btn">Adicionar</a>
     </div>
 </div>
 
 <?php
-include_once 'includes/footer.php';
+include_once 'views/footer.php';
 ?>
