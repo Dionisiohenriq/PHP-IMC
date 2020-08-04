@@ -1,7 +1,8 @@
 <?php
-include_once 'models/db_connect.php';
+include_once '/models/banco.php';
 
 include_once 'views/header.php';
+
 if(isset($_GET['id'])):
     $id = mysqli_escape_string($connect, $_GET['id']);
     $sql = "SELECT * FROM pessoa WHERE id = '$id'";
@@ -13,7 +14,7 @@ if(isset($_GET['id'])):
 <div class="row">
     <div class="col s12 m6 push-m3">
         <h3 class="light">Editar Pessoas</h3>
-        <form action="php_action/update.php" method="POST">
+        <form action="/models/update.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $dados['id'];?>">
             <div class="input-field col s12">
                 <input type="text" name="nome" id="nome" value="<?php echo $dados['nome'];?>">
@@ -40,12 +41,12 @@ if(isset($_GET['id'])):
                 </select>
             </div>
             <button type="submit" name="btn-editar" class="btn">Atualizar</button>
-            <a href="../index.php" class="btn blue" >Lista de Pessoas</a>
+            <a href="index.php" class="btn blue" >Lista de Pessoas</a>
         </form>
     </div>
 </div>
 
 <?php
-include_once 'includes/footer.php';
+include_once 'views/footer.php';
 
 ?>

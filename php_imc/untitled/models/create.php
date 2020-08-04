@@ -30,4 +30,10 @@ if(isset($_POST['btn-cadastrar'])):
         header('Location: ../index.php');
     endif;
 endif;
-?>
+
+
+
+
+
+
+}

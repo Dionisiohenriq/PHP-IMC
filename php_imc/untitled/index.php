@@ -1,9 +1,7 @@
 <?php
 // conexão
 include_once "models/banco.php";
-
 include_once 'views/header.php';
-
 include_once 'views/mensagem.php';
 ?>
 

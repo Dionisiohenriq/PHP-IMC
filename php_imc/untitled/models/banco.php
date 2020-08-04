@@ -1,13 +1,48 @@
 <?php
-$servername = 'localhost';
-$username = 'dionisiohenriq';
-$password = 'Rique89564712';
-$db_name = 'pessoa';
+require_once ("../init.php");
 
-$connect = mysqli_connect($servername, $username, $password, $db_name);
+class Banco
+{
+    protected $mysqli;
+    public function __construct()
+    {
+        $this->conexao();
+    }
 
-mysqli_set_charset($connect, 'utf-8');
+    private function conexao()
+    {
+        $this->mysqli = new mysqli(BD_SERVIDOR,BD_USUARIO,
+            BD_SENHA, BD_BANCO);
+    }
 
-if(mysqli_connect_error()):
-    echo "Erro na conexão: ".mysqli_connect_error();
-endif;
+    public function setPessoa($nome, $idade, $altura, $peso)
+    {
+        $stmt = $this->msqli->prepare("INSERT INTO pessoa('nome','idade', 'altura', 'peso')
+    VALUES(?, ?, ?, ?)");
+        $stmt->bind_param($nome, $idade, $altura, $peso );
+        if($stmt->execute == true):
+            return true;
+        else:
+            return false;
+        endif;
+    }
+    
+    public function getPessoa()
+    {
+        $result = $this->mysqli->query("SELECT * FROM pessoa");
+        while($row = $result->fetch_array(MYSQLI_ASSOC))
+        {
+            $array[] = $row;
+        }
+        return $array;
+    }
+
+    public function deletePessoa($id)
+    {
+        if($this->mysqli->query("DELETE FROM `pessoa` WHERE `id_pessoa` = ''".$id."';")== true):
+            return true;
+        else:
+            return false;
+        endif;
+    }
+}
